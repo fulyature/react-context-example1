@@ -9,7 +9,7 @@ import { useContext } from "react";
 function Navs() {
   // cunsuming tüketim:kullanım
 
-  const { user } = useContext(LoginContext);
+  const { user, setUser } = useContext(LoginContext);
 
   return (
     <Navbar expand="md">
@@ -35,6 +35,19 @@ function Navs() {
             <Link className="nav-link" to="/people">
               People
             </Link>
+            {user?.email && user?.password ? (
+              <Link
+                className="nav-link"
+                to="/login"
+                onClick={() => setUser({ email: "", password: "" })}
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            )}
             <Link className="nav-link" to="/login">
               Login
             </Link>
